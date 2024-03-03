@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questao 4</title>
+  </head>
+  <body>
+    <h1>Várias listas</h1>
+
+    <p id="lista-titulo" name="lista">Lista de itens:</p>
+
+    <ul class="lista-itens-1">
+      <li id="one" class="hot">item a</li>
+      <li id="two" class="hot">item b</li>
+      <li id="three" class="hot">item c</li>
+      <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-2">
+      <li id="one" class="hot">item a</li>
+      <li id="two" class="hot">item b</li>
+      <li id="three" class="hot">item c</li>
+      <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-3">
+      <li id="one" class="hot">item a</li>
+      <li id="two" class="hot">item b</li>
+      <li id="three" class="hot">item c</li>
+      <li id="four">item d</li>
+    </ul>
+
+    <ul class="lista-itens-4">
+      <li id="one" class="hot">item a</li>
+      <li id="two" class="hot">item b</li>
+      <li id="three" class="hot">item c</li>
+      <li id="four">item d</li>
+    </ul>
+  </body>
+  <script type="text/javascript">
+    const items = document.querySelector("ul.lista-itens-2");
+    console.log(items);
+
+    const itemsHot = items.querySelectorAll("li.hot");
+    itemsHot.forEach((element) => {
+      console.log(element);
+    });
+  </script>
+</html>
