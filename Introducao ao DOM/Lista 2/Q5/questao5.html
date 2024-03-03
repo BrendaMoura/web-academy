@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questao 5</title>
+  </head>
+  <body>
+    <h1>To-do</h1>
+
+    <div>
+      <p id="lista-titulo" name="lista">Lista de atividades:</p>
+    </div>
+
+    <div>
+      <input placeholder="Digite aqui o item" />
+      <button id="add">Adicionar</button>
+    </div>
+
+    <ul id="lista-itens">
+      <li>item a</li>
+    </ul>
+
+    <div>
+      <button id="remove">Remover último item</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+    const list = document.getElementById("lista-itens");
+    const input = document.querySelector("input");
+    const btnAdd = document.getElementById("add");
+    const btnRemove = document.getElementById("remove");
+
+    btnAdd.addEventListener("click", addItem);
+    btnRemove.addEventListener("click", removeItem);
+
+    function addItem() {
+      if (!input.value) {
+        return;
+      }
+      const newElement = document.createElement("li");
+      newElement.textContent = input.value;
+      list.appendChild(newElement);
+    }
+
+    function removeItem() {
+      if (list.children.length <= 0) {
+        return;
+      }
+      console.log("aa");
+      list.removeChild(list.lastElementChild);
+    }
+  </script>
+</html>
