@@ -1,0 +1,107 @@
+html {
+  --green: #157347;
+  --dark-green: #13653f;
+  --light-green: #c9e591;
+  --red: #dc3545;
+  --dark-red: #a52834;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+h1 {
+  color: white;
+}
+
+header {
+  background-image: url("../img/landscape-view.jpg");
+  background-size: cover;
+  height: 200px;
+}
+
+main {
+  width: 50%;
+  margin: auto;
+  position: relative;
+  z-index: 10;
+  top: -100px;
+}
+
+.input-box {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--green);
+}
+
+.input-box:focus {
+  outline: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  background-color: var(--light-green);
+}
+
+.content {
+  width: 80%;
+  height: 100%;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.content h2 {
+  font-size: 1em;
+  color: black;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 20%;
+  height: 100%;
+}
+
+.action input {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+}
+
+.action input:first-child {
+  background-color: var(--green);
+}
+
+.action input:first-child:hover {
+  background-color: var(--dark-green);
+}
+
+.action input:last-child {
+  background-color: var(--red);
+}
+
+.action input:last-child:hover {
+  background-color: var(--dark-red);
+}
