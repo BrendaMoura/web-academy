@@ -31,7 +31,7 @@ main {
 }
 
 .input-box {
-  width: 100%;
+  width: calc(100% - 20px);
   height: 30px;
   padding: 10px;
   border-radius: 10px;
@@ -46,12 +46,12 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 20px);
   height: 80px;
   background-color: white;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
   font-size: 1em;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -104,4 +104,10 @@ main {
 
 .action input:last-child:hover {
   background-color: var(--dark-red);
+}
+
+@media screen and (max-width: 576px) {
+  main {
+    width: 80%;
+  }
 }
