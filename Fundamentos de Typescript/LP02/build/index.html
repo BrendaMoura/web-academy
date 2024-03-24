@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turma</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="metrics">
+        <div class="card-metric">
+          <h1>{{quantidade}}</h1>
+          <p>Quantidade de Alunos</p>
+        </div>
+
+        <div class="card-metric">
+          <h1>{{media_idades}}</h1>
+          <p>Média de Idades</p>
+        </div>
+
+        <div class="card-metric">
+          <h1>{{media_alturas}}</h1>
+          <p>Média de Altura</p>
+        </div>
+
+        <div class="card-metric">
+          <h1>{{media_pesos}}</h1>
+          <p>Média de Peso</p>
+        </div>
+      </div>
+
+      <div id="students">
+        <header>
+          <h2>Alunos</h2>
+          <input id="add" type="button" value="Adicionar" />
+        </header>
+      </div>
+    </div>
+
+    <div id="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Aluno:</h2>
+        <form action="">
+          <label for="name">Nome: </label>
+          <input type="text" name="name" id="name" />
+
+          <label for="age">Idade: </label>
+          <input type="number" name="age" id="age" />
+
+          <label for="height">Altura: </label>
+          <input type="number" name="height" id="height" />
+
+          <label for="weight">Peso: </label>
+          <input type="number" name="weight" id="weight" />
+
+          <input id="save" type="button" value="Salvar" />
+        </form>
+      </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

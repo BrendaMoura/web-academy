@@ -1,0 +1,220 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, Sans-Serif;
+
+  --black: #2b2f39;
+  --lightgreen: #c6e571;
+  --green: #157347;
+  --dark-green: #13653f;
+  --red: #dc3545;
+  --dark-red: #a52834;
+}
+
+h1,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+  width: 30%;
+  background-color: var(--lightgreen);
+  color: white;
+}
+
+.card-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 70%;
+  height: 20%;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: var(--black);
+}
+
+.card-metric:hover {
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 1);
+}
+
+#students {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 90%;
+  width: 70%;
+  padding: 20px 0;
+  overflow-y: scroll;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+}
+
+header input {
+  height: 30px;
+}
+
+.card-student {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%;
+  min-height: 80px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+  font-size: 1em;
+}
+
+.card-student:hover {
+  background-color: var(--lightgreen);
+}
+
+.content {
+  width: 80%;
+  height: 100%;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.content h2 {
+  font-size: 1em;
+  color: black;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 20%;
+  height: 100%;
+}
+
+.action input {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+}
+
+.action input:first-child {
+  background-color: var(--green);
+}
+
+.action input:first-child:hover {
+  background-color: var(--dark-green);
+}
+
+.action input:last-child {
+  background-color: var(--red);
+}
+
+.action input:last-child:hover {
+  background-color: var(--dark-red);
+}
+
+#modal {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  width: 20%;
+  height: 60%;
+  margin: 10% auto;
+  padding: 20px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.modal-content form input[type="button"] {
+  width: 100px;
+  height: 30px;
+  background-color: var(--green);
+  color: white;
+  margin-top: 10px;
+  border: 0;
+}
+
+.modal-content form input[type="button"]:hover {
+  background-color: var(--dark-green);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  .metrics {
+    width: 100%;
+    min-height: calc(100% - 40px);
+    padding: 20px 0;
+  }
+
+  #students {
+    width: 100%;
+    min-height: calc(100% - 40px);
+  }
+
+  .modal-content {
+    width: 90%;
+    height: 50%;
+    margin: 40% auto;
+  }
+}
