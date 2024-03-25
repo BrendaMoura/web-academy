@@ -207,7 +207,7 @@ const deleteStudent = (idElement: number): void => {
 const editStudent = (student: Aluno): void => {
   const item: HTMLElement = document.getElementById(`item${student.id}`)!;
   item.querySelector("h2")!.textContent = student.nomeCompleto;
-  item.querySelector("p")!.textContent = student.idade.toString();
+  item.querySelector("p")!.textContent = `${student.idade} anos`;
   modal.style.display = "none";
 };
 
