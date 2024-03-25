@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="metrics">
+      <div id="metrics">
         <div class="card-metric">
           <h1>{{quantidade}}</h1>
           <p>Quantidade de Alunos</p>
@@ -43,6 +43,15 @@
         <span class="close">&times;</span>
         <h2>Aluno:</h2>
         <form action="">
+          <label for="idStudent">Id: </label>
+          <input
+            type="text"
+            name="idStudent"
+            id="idStudent"
+            placeholder="Gerado automaticamente"
+            disabled
+          />
+
           <label for="name">Nome: </label>
           <input type="text" name="name" id="name" />
 
@@ -59,6 +68,7 @@
         </form>
       </div>
     </div>
-    <script type="module" src="./js/main.js"></script>
+
+    <script src="./js/main.js"></script>
   </body>
 </html>
