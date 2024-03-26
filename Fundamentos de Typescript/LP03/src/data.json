@@ -1,0 +1,125 @@
+{
+  "products": [
+    {
+      "modelo": "iPhone 13",
+      "fabricante": "Apple",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Samsung QLED 4K",
+      "fabricante": "Samsung",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "Caloi Explorer",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "LG OLED 4K",
+      "fabricante": "LG",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "iPhone 12",
+      "fabricante": "Apple",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Caloi Elite",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "Sony Bravia",
+      "fabricante": "Sony",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "iPhone SE",
+      "fabricante": "Apple",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Philips Ambilight",
+      "fabricante": "Philips",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "Caloi Carbon",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "Samsung Galaxy S21",
+      "fabricante": "Samsung",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Caloi Aluminum",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "LG NanoCell",
+      "fabricante": "LG",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "iPhone 11",
+      "fabricante": "Apple",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Caloi Cross",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "Sony XBR",
+      "fabricante": "Sony",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    },
+    {
+      "modelo": "iPhone XR",
+      "fabricante": "Apple",
+      "valor": 1000,
+      "memoria": 64
+    },
+    {
+      "modelo": "Caloi Sport",
+      "fabricante": "Caloi",
+      "valor": 300,
+      "aro": 26
+    },
+    {
+      "modelo": "Samsung Crystal UHD",
+      "fabricante": "Samsung",
+      "valor": 1500,
+      "resolucao": "Full HD",
+      "polegadas": 55
+    }
+  ]
+}
