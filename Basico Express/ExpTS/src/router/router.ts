@@ -1,57 +1,18 @@
-import { Router, Request, Response } from "express";
-import { loremIpsum } from "lorem-ipsum";
+import { Router } from "express";
+import mainController from "../controllers/main";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
+router.get("/", mainController.hello);
 
-router.get("/lorem/:qtdParagrafos", (req: Request, res: Response) => {
-  const { qtdParagrafos } = req.params;
+router.get("/lorem/:qtdParagrafos", mainController.lorem);
 
-  const texto = loremIpsum({
-    count: Number(qtdParagrafos),
-    format: "html",
-    paragraphLowerBound: 6,
-    paragraphUpperBound: 7,
-    random: Math.random,
-    sentenceLowerBound: 5,
-    sentenceUpperBound: 15,
-    suffix: "\n",
-    units: "paragraphs",
-  });
+router.get("/hb1", mainController.hb1);
 
-  res.send(texto);
-});
+router.get("/hb2", mainController.hb2);
 
-router.get("/hb1", (req: Request, res: Response) => {
-  res.render("hb1", {
-    message: "Hello World from HB1!",
-    layout: false,
-  });
-});
+router.get("/hb3", mainController.hb3);
 
-router.get("/hb2", (req: Request, res: Response) => {
-  res.render("hb2", {
-    isDoctorWhoFan: true,
-    message: "Doctor Who is amazing, good you know!!!",
-    layout: false,
-  });
-});
-
-router.get("/hb3", (req: Request, res: Response) => {
-  const series = [
-    { nome: "Doctor Who", ano: 1963 },
-    { nome: "The Mandalorian", ano: 2019 },
-    { nome: "The Big Bang Theory", ano: 2007 },
-    { nome: "Chicago Fire", ano: 2012 },
-  ];
-
-  res.render("hb3", {
-    series,
-    layout: false,
-  });
-});
+router.get("/hb4", mainController.hb4);
 
 export default router;
