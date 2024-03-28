@@ -26,7 +26,7 @@ html {
 #list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   height: 100%;
   width: 70%;
 }
@@ -37,14 +37,11 @@ html {
   justify-content: center;
   align-items: center;
   width: 90%;
-  min-height: 80px;
+  height: 130px;
   background-color: white;
   box-shadow: 1px 1px 5px 2px var(--black-a-1);
   font-size: 1em;
-}
-
-.card:hover {
-  background-color: var(--lightgreen);
+  border: 1px solid black;
 }
 
 .card-img {
@@ -53,28 +50,21 @@ html {
   background-color: var(--gray);
 }
 
-.card-img img {
-  height: 100px;
-  width: 100%;
-}
-
 .card-body {
   display: flex;
   flex-direction: column;
-
   width: 80%;
   height: 100%;
   padding: 0 10px;
 }
 
 .card-body p:last-child {
-  font-size: 13px;
+  font-size: 12px;
   margin: 0;
 }
 
 .head {
   width: 100%;
-  font-size: 1em;
   color: var(--black-a-6);
   display: flex;
   flex-direction: row;
@@ -84,36 +74,102 @@ html {
 .head span {
   display: flex;
   flex-direction: row;
-}
-
-.head h2 {
-  font-size: 1em;
-  color: black;
-}
-
-#cart {
-  min-height: 10%;
-  width: 30%;
-  background: lightgray;
+  align-items: center;
 }
 
 .close {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
+  height: 25px;
+  width: 25px;
   background-color: var(--gray);
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
   margin: auto;
   margin-left: 30px;
 }
 
+#cart {
+  position: fixed;
+  right: 20px;
+  width: 30%;
+  height: 100vh;
+}
+
+#cart-items {
+  width: 100%;
+  height: 50vh;
+  overflow: hidden auto;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 130px;
+  border: 1px solid lightgray;
+}
+
+.item-body {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  width: 60%;
+  padding: 0 10px;
+}
+.minus-plus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
+  height: 30px;
+}
+
+.item-img {
+  height: 100%;
+  width: 40%;
+}
+
+.item-img img {
+  height: 100px;
+  width: 100%;
+}
+
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 40vh;
+}
+
+.cart-footer input {
+  height: 40px;
+  width: 100%;
+  border: 0;
+}
+
+.cart-footer input:first-of-type {
+  color: black;
+  background-color: lightgray;
+}
+
+.cart-footer input:last-child {
+  color: white;
+  background-color: black;
+}
+
 .close:hover,
-.close:focus {
+.close:focus,
+.cart-footer input:hover,
+.cart-footer input:focus {
   text-decoration: none;
   cursor: pointer;
 }
