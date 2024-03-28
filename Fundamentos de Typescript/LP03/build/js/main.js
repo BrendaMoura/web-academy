@@ -1,17 +1,23 @@
-import { TV, Celular, Bicicleta, Item, Cart } from "./classes.js";
+import { TV, Celular, Bicicleta, Item, Cart } from "./model/Classes.js";
 const productList = document.getElementById("list");
 const cartList = document.getElementById("cart-items");
-const clearCart = document.getElementById("clear-cart");
-const finishCart = document.getElementById("finish-cart");
+const btnClearCart = document.getElementById("clear-cart");
+const btnFinishCart = document.getElementById("finish-cart");
 const list_products = [];
 const cart = new Cart([]);
 const loadProducts = () => {
-    const television = new TV("TV Epsilon", "FullHD", 50, "LG", 6510);
-    const cellphone = new Celular("Celular Epsilon", 500, "Samsung", 3500);
-    const bicycle = new Bicicleta("Bicicleta Epsilon", 17, "Caloi", 4350);
+    const television = new TV("Samsung QLED 4K", "Full HD", 50, "Samsung", 6510);
+    const television2 = new TV("Philips Ambilight", "4K", 60, "Philips", 10700);
+    const cellphone = new Celular("iPhone 13", 500, "Iphone", 9500);
+    const cellphone2 = new Celular("iPhone XP", 64, "Iphone", 3000);
+    const bicycle = new Bicicleta("Caloi Explorer", 26, "Caloi", 865);
+    const bicycle2 = new Bicicleta("Caloi Cross", 20, "Caloi", 670);
     list_products.push(television);
+    list_products.push(television2);
     list_products.push(cellphone);
+    list_products.push(cellphone2);
     list_products.push(bicycle);
+    list_products.push(bicycle2);
 };
 const addProductToScreen = (product) => {
     const card = document.createElement("article");
@@ -147,18 +153,21 @@ const decreaseQtdProduct = (id) => {
     qtdLabel.textContent = qtdProduct.toString();
     updateCart();
 };
-clearCart.addEventListener("click", () => {
+const clearCart = () => {
     cart.items = [];
-    const children = cartList.children;
-    for (let i = 0; i < children.length; i++) {
-        if (children[i].tagName !== "IMG") {
-            cartList.removeChild(children[i]);
-        }
+    while (cartList.children.length > 1) {
+        cartList.removeChild(cartList.lastChild);
     }
     updateCart();
-});
-finishCart.addEventListener("click", () => {
-    alert("Obrigada por comprar nossos produtos!");
+};
+btnClearCart.addEventListener("click", clearCart);
+btnFinishCart.addEventListener("click", () => {
+    if (isCartEmpty()) {
+        alert("Seu carrinho esta vazio!");
+        return;
+    }
+    alert(`Obrigada por comprar nossos produtos, sua compra deu R$${getCartTotal()}!`);
+    clearCart();
 });
 loadProducts();
 loadList();
