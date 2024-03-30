@@ -30,14 +30,18 @@ app.use(
     prefix: "/css"
   })
 );
+
+app.use(express.urlencoded({ extended: false }));
 app.use(logger("simples"));
+app.use(router);
 
 app.use("/html", express.static(`${__dirname}/../public/html`));
 app.use("/css", express.static(`${__dirname}/../public/css`));
-app.use("/js", express.static(`${__dirname}/../public/js`));
+app.use("/js", [
+  express.static(`${__dirname}/../public/js`),
+  express.static(`${__dirname}/../node_modules/bootstrap/dist/js`)
+]);
 app.use("/img", express.static(`${__dirname}/../public/img`));
-
-app.use(router);
 
 app.listen(PORT, () => {
   console.log(`Rodando na porta ${PORT}`);

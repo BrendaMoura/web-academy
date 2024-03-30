@@ -5,8 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "nodemon src/index.ts",
+    "start": "nodemon src/index.ts --watch src",
     "start:prod": "node build/index.js",
+    "start:db": "npx json-server --watch data/db.json --port 3355",
     "lint": "npx eslint --ext .ts src/",
     "lint:fix": "npx eslint --fix --ext .ts src/",
     "format": "npx prettier --write src/"
@@ -15,10 +16,12 @@
   "author": "Brenda Moura",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "envalid": "^8.0.0",
     "express": "^4.19.1",
     "express-handlebars": "^7.1.2",
+    "json-server": "^1.0.0-alpha.23",
     "lorem-ipsum": "^2.0.8",
     "node-sass-middleware": "^1.1.0",
     "nodemon": "^3.1.0",

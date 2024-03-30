@@ -1,0 +1,28 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Celular Samsung Galaxy S23",
+      "preco": 3000,
+      "estoque": 90
+    },
+    {
+      "nome": "Monitor Dell XP7",
+      "preco": "2000",
+      "estoque": "120",
+      "id": "3"
+    },
+    {
+      "id": "7ff3",
+      "nome": "Celular Motorola G5",
+      "preco": "2990",
+      "estoque": "220"
+    },
+    {
+      "id": "2c63",
+      "nome": "Tablet Samsung Galaxy Tab 6",
+      "preco": "7000",
+      "estoque": "150"
+    }
+  ]
+}

@@ -1,4 +1,12 @@
 h1 {
-    color: green;
+  color: green;
 }
-  
+
+a {
+  color: black;
+}
+
+th:last-child,
+td:last-child {
+  text-align: right;
+}
