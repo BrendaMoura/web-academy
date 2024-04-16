@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model USUARIO {
+	cpf Int @id
+	ts_criacao DateTime @default(now())
+  	ts_alteracao DateTime @updatedAt
+	nome String @db.VarChar(255)
+  	email String @unique @db.VarChar(100)
+  	celular Int
+  	data_nasc DateTime
+
+  	enderecos ENDERECO[]
+  	pedidos PEDIDO[]
+}
+
+model ENDERECO{
+	id Int @id @default(autoincrement())
+	rua String  @db.VarChar(100)
+	numero Int
+	bairro String  @db.VarChar(100)
+	cep Int
+
+	cpf Int
+	usuario USUARIO @relation(fields: [cpf], references: [cpf], onDelete: Cascade)
+
+	pedidos PEDIDO[]
+}
+
+model PAGAMENTO{
+	id Int @id @default(autoincrement())
+	tipo String @unique @db.VarChar(50)
+
+	pedidos PEDIDO[]
+}
+
+model MODELO{
+	id Int @id @default(autoincrement())
+	tipo String @unique @db.VarChar(50)
+
+	numeros_series NUM_SERIE_MODELO[]
+	produtos PRODUTO[]
+}
+
+model NUM_SERIE_MODELO{
+	numero_serie Int @id
+
+	id_modelo Int
+	modelo MODELO @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
+}
+
+model CATEGORIA{
+	id Int @id @default(autoincrement())
+	tipo String @unique @db.VarChar(50)
+
+	produtos PRODUTO[]
+}
+
+model SUBCATEGORIA{
+	id Int @id @default(autoincrement())
+	tipo String @unique @db.VarChar(50)
+
+	produtos SUBCATEGORIA_PRODUTO[]
+}
+
+model PRODUTO{
+	id Int @id @default(autoincrement())
+	ts_criacao DateTime @default(now())
+  	ts_alteracao DateTime @updatedAt
+	fabricante String @db.VarChar(150)
+	preco_base Int
+	estoque Int
+
+	id_modelo Int
+	modelo MODELO @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
+
+	id_categoria Int
+	categoria CATEGORIA @relation(fields: [id_categoria], references: [id], onDelete: Restrict)
+
+	subcategoria SUBCATEGORIA_PRODUTO[]
+	pedidos PEDIDO_PRODUTO[]
+}
+
+model SUBCATEGORIA_PRODUTO{
+	id_produto Int
+	produto PRODUTO @relation(fields: [id_produto], references: [id], onDelete: Cascade)
+
+	id_subcategoria Int
+	subcategoria SUBCATEGORIA @relation(fields: [id_subcategoria], references: [id], onDelete: Restrict)
+
+	@@id([id_produto, id_subcategoria])
+}
+
+model PEDIDO{
+	id Int @id @default(autoincrement())
+	
+	desconto Int
+	total Int
+	ts_criacao DateTime @default(now())
+
+	cpf Int?
+	usuario USUARIO? @relation(fields: [cpf], references: [cpf], onDelete: SetNull)
+
+	id_endereco Int?
+	endereco ENDERECO? @relation(fields: [id_endereco], references: [id], onDelete: SetNull)
+
+	id_pagamento Int
+	pagamento PAGAMENTO @relation(fields: [id_pagamento], references: [id], onDelete: Restrict)
+
+	produtos PEDIDO_PRODUTO[]
+}
+
+model PEDIDO_PRODUTO{
+	quantidade Int
+
+	id_produto Int
+	produto PRODUTO @relation(fields: [id_produto], references: [id], onDelete: Cascade)
+
+	id_pedido Int
+	pedido PEDIDO @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+
+	@@id([id_produto, id_pedido])
+}
+
