@@ -10,69 +10,69 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model USUARIO {
-	cpf Int @id
+model Usuario {
+	cpf String @id @db.VarChar(20)
 	ts_criacao DateTime @default(now())
   	ts_alteracao DateTime @updatedAt
-	nome String @db.VarChar(255)
+	nome String @db.VarChar(100)
   	email String @unique @db.VarChar(100)
-  	celular Int
+  	celular String @db.VarChar(20)
   	data_nasc DateTime
 
-  	enderecos ENDERECO[]
-  	pedidos PEDIDO[]
+  	enderecos Endereco[]
+  	pedidos Pedido[]
 }
 
-model ENDERECO{
+model Endereco{
 	id Int @id @default(autoincrement())
 	rua String  @db.VarChar(100)
 	numero Int
 	bairro String  @db.VarChar(100)
 	cep Int
 
-	cpf Int
-	usuario USUARIO @relation(fields: [cpf], references: [cpf], onDelete: Cascade)
+	cpf String @db.VarChar(20)
+	usuario Usuario @relation(fields: [cpf], references: [cpf], onDelete: Cascade)
 
-	pedidos PEDIDO[]
+	pedidos Pedido[]
 }
 
-model PAGAMENTO{
+model Pagamento{
 	id Int @id @default(autoincrement())
 	tipo String @unique @db.VarChar(50)
 
-	pedidos PEDIDO[]
+	pedidos Pedido[]
 }
 
-model MODELO{
+model Modelo{
 	id Int @id @default(autoincrement())
 	tipo String @unique @db.VarChar(50)
 
-	numeros_series NUM_SERIE_MODELO[]
-	produtos PRODUTO[]
+	numeros_series Num_serie_modelo[]
+	produtos Produto[]
 }
 
-model NUM_SERIE_MODELO{
+model Num_serie_modelo{
 	numero_serie Int @id
 
 	id_modelo Int
-	modelo MODELO @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
+	modelo Modelo @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
 }
 
-model CATEGORIA{
+model Categoria{
 	id Int @id @default(autoincrement())
 	tipo String @unique @db.VarChar(50)
 
-	produtos PRODUTO[]
+	produtos Produto[]
 }
 
-model SUBCATEGORIA{
+model Subcategoria{
 	id Int @id @default(autoincrement())
 	tipo String @unique @db.VarChar(50)
 
-	produtos SUBCATEGORIA_PRODUTO[]
+	produtos Subcategoria_produto[]
 }
 
-model PRODUTO{
+model Produto{
 	id Int @id @default(autoincrement())
 	ts_criacao DateTime @default(now())
   	ts_alteracao DateTime @updatedAt
@@ -81,52 +81,52 @@ model PRODUTO{
 	estoque Int
 
 	id_modelo Int
-	modelo MODELO @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
+	modelo Modelo @relation(fields: [id_modelo], references: [id], onDelete: Cascade)
 
 	id_categoria Int
-	categoria CATEGORIA @relation(fields: [id_categoria], references: [id], onDelete: Restrict)
+	categoria Categoria @relation(fields: [id_categoria], references: [id], onDelete: Restrict)
 
-	subcategoria SUBCATEGORIA_PRODUTO[]
-	pedidos PEDIDO_PRODUTO[]
+	subcategoria Subcategoria_produto[]
+	pedidos Pedido_produto[]
 }
 
-model SUBCATEGORIA_PRODUTO{
+model Subcategoria_produto{
 	id_produto Int
-	produto PRODUTO @relation(fields: [id_produto], references: [id], onDelete: Cascade)
+	produto Produto @relation(fields: [id_produto], references: [id], onDelete: Cascade)
 
 	id_subcategoria Int
-	subcategoria SUBCATEGORIA @relation(fields: [id_subcategoria], references: [id], onDelete: Restrict)
+	subcategoria Subcategoria @relation(fields: [id_subcategoria], references: [id], onDelete: Restrict)
 
 	@@id([id_produto, id_subcategoria])
 }
 
-model PEDIDO{
+model Pedido{
 	id Int @id @default(autoincrement())
 	
 	desconto Int
 	total Int
 	ts_criacao DateTime @default(now())
 
-	cpf Int?
-	usuario USUARIO? @relation(fields: [cpf], references: [cpf], onDelete: SetNull)
+	cpf String? @db.VarChar(20)
+	usuario Usuario? @relation(fields: [cpf], references: [cpf], onDelete: SetNull)
 
 	id_endereco Int?
-	endereco ENDERECO? @relation(fields: [id_endereco], references: [id], onDelete: SetNull)
+	endereco Endereco? @relation(fields: [id_endereco], references: [id], onDelete: SetNull)
 
 	id_pagamento Int
-	pagamento PAGAMENTO @relation(fields: [id_pagamento], references: [id], onDelete: Restrict)
+	pagamento Pagamento @relation(fields: [id_pagamento], references: [id], onDelete: Restrict)
 
-	produtos PEDIDO_PRODUTO[]
+	produtos Pedido_produto[]
 }
 
-model PEDIDO_PRODUTO{
+model Pedido_produto{
 	quantidade Int
 
 	id_produto Int
-	produto PRODUTO @relation(fields: [id_produto], references: [id], onDelete: Cascade)
+	produto Produto @relation(fields: [id_produto], references: [id], onDelete: Cascade)
 
 	id_pedido Int
-	pedido PEDIDO @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+	pedido Pedido @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
 
 	@@id([id_produto, id_pedido])
 }
