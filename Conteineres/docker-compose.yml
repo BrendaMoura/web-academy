@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: bdcontainer
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=webacademy
+    networks:
+      - rede_listagem
+    volumes:
+      - volume_mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: bdguicontainer
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=webacademy
+    networks:
+      - rede_listagem
+    depends_on:
+      - mysql
+  backend_listagem:
+    container_name: backend_listagem
+    build: ./backend
+    ports:
+      - 4444:4444
+    env_file:
+      - ./backend/.env
+    environment:
+      - BD_ENDERECO=localhost
+      - BD_PORTA=3306
+      - BD_BANCODEDADOS=mysql
+      - BD_USUARIO=root
+      - BD_SENHA=webacademy
+    networks:
+      - rede_listagem
+    volumes:
+      - volume_logs:/log
+    depends_on:
+      - mysql
+  frontend_listagem:
+    container_name: frontend_listagem
+    build: ./frontend
+    ports:
+      - 8000:80
+    env_file:
+      - ./frontend/.env
+    networks:
+      - rede_listagem
+    depends_on:
+      - backend_listagem
+networks:
+  rede_listagem:
+    driver: bridge
+volumes:
+  volume_mysql:
+  volume_logs:
