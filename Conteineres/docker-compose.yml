@@ -6,6 +6,7 @@ services:
     container_name: bdcontainer
     ports:
       - 3306:3306
+      - 33060:33060
     environment:
       - MYSQL_ROOT_PASSWORD=webacademy
     networks:
@@ -33,16 +34,10 @@ services:
       - 4444:4444
     env_file:
       - ./backend/.env
-    environment:
-      - BD_ENDERECO=localhost
-      - BD_PORTA=3306
-      - BD_BANCODEDADOS=mysql
-      - BD_USUARIO=root
-      - BD_SENHA=webacademy
     networks:
       - rede_listagem
     volumes:
-      - volume_logs:/log
+      - volume_logs:/app/log
     depends_on:
       - mysql
   frontend_listagem:
