@@ -1,0 +1,579 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API da Loja virtual",
+    "description": "Documentação da API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:4466",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/v1/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Adiciona um novo usuário na base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUsuarioDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Loga um usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Desloga um usuário.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/produto/": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Recupera dados de todos os produtos da base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produtos"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Adiciona um novo produto na base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateProdutoDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/produto/{id}": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Recupera dados de um produto específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do produto"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Atualiza informações de um produto específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do produto"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateProdutoDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produto"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "summary": "Deleta um produto específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do produto"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/language/": {
+      "post": {
+        "tags": [
+          "Language"
+        ],
+        "summary": "Altera o cookie language.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/usuario/": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Recupera dados de todos os usuários da base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuarios"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Adiciona um novo usuário na base.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUsuarioDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            },
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/usuario/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Recupera dados de um produto usuário específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Atualiza informações de um usuário específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do usuário"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUsuarioDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            },
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Deleta um usuário específico.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/carrinho/{id}/{quantidade}": {
+      "get": {
+        "tags": [
+          "Carrinho"
+        ],
+        "summary": "Adiciona um produto no carrinho.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do produto"
+          },
+          {
+            "name": "quantidade",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Quantidade do produto"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/carrinho/": {
+      "get": {
+        "tags": [
+          "Carrinho"
+        ],
+        "summary": "Finaliza compra.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateProdutoDto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Martelo"
+        },
+        "preco": {
+          "type": "number",
+          "example": 29
+        },
+        "estoque": {
+          "type": "number",
+          "example": 10
+        }
+      }
+    },
+    "Produto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "8a2053de-5d92-4c43-97c0-c9b2b0d56703"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Bacon"
+        },
+        "preco": {
+          "type": "number",
+          "example": 261
+        },
+        "estoque": {
+          "type": "number",
+          "example": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2023-11-07T19:27:15.645Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2023-11-07T19:27:15.645Z"
+        }
+      }
+    },
+    "Produtos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "e7d9ab18-f4fb-4c7f-9f87-80d914e5cec5"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Sacola"
+          },
+          "preco": {
+            "type": "number",
+            "example": 30
+          },
+          "estoque": {
+            "type": "number",
+            "example": 100
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-11-07T19:23:30.645Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-11-07T19:27:15.645Z"
+          }
+        }
+      }
+    },
+    "CreateUsuarioDto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Márcia"
+        },
+        "email": {
+          "type": "string",
+          "example": "marcia@gmail.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "marcia123"
+        },
+        "tipoUsuarioId": {
+          "type": "string",
+          "example": "48aa1186-15b3-4512-a863-5a86b9687666"
+        }
+      }
+    },
+    "Usuario": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "d1c61bd3-ddb7-4ac6-bb06-d2dde417f560"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Márcia"
+        },
+        "email": {
+          "type": "string",
+          "example": "marcia@gmail.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "marcia123"
+        },
+        "tipoUsuarioId": {
+          "type": "string",
+          "example": "48aa1186-15b3-4512-a863-5a86b9687666"
+        }
+      }
+    },
+    "Usuarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "0dd92da1-f06b-43e9-bb30-fb4064b3fefc"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Márcio"
+          },
+          "email": {
+            "type": "string",
+            "example": "marcio@gmail.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "marcio123"
+          },
+          "tipoUsuarioId": {
+            "type": "string",
+            "example": "ce28a957-3ae0-4804-bab1-7bfca75c6888"
+          }
+        }
+      }
+    },
+    "LoginDto": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "marcia@gmail.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "marcia123"
+        }
+      }
+    }
+  }
+}

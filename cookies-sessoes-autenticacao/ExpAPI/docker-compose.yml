@@ -6,7 +6,7 @@ services:
     build:
       context: ./backend
     volumes:
-      - ./backend/src:/app/src
+      - ./backend:/app
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
   frontend:
@@ -14,7 +14,7 @@ services:
     build:
       context: ./frontend
     volumes:
-      - ./frontend/src:/app/src
+      - ./frontend:/app
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
   db:

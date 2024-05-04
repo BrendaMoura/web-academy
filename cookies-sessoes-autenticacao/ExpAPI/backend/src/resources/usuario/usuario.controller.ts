@@ -1,20 +1,21 @@
 import { Request, Response } from "express";
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import {
-  checkNomeIsAvailable,
-  createProduto,
-  deleteProduto,
-  listProdutos,
-  readProduto,
-  updateProduto,
-} from "./produto.service";
-import { CreateProdutoDto, UpdateProdutoDto } from "./produto.types";
+  buscaUsuarioPorEmail,
+  buscaUsuarioPorId,
+  createUsuario,
+  deleteUsuario,
+  listUsuarios,
+  readUsuario,
+  updateUsuario,
+} from "./usuario.service";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { CreateUsuarioDto, UpdateUsuarioDto } from "./usuario.types";
 
 const index = async (req: Request, res: Response) => {
   /*
- #swagger.summary = 'Recupera dados de todos os produtos da base.'
+ #swagger.summary = 'Recupera dados de todos os usuários da base.'
  #swagger.responses[200] = {
-   schema: { $ref: '#/definitions/Produtos' }
+   schema: { $ref: '#/definitions/Usuarios' }
  }
  */
 
@@ -22,8 +23,8 @@ const index = async (req: Request, res: Response) => {
   const take = req.query.take ? parseInt(req.query.take.toString()) : undefined;
 
   try {
-    const produtos = await listProdutos(skip, take);
-    res.status(StatusCodes.CREATED).json(produtos);
+    const usuarios = await listUsuarios(skip, take);
+    res.status(StatusCodes.CREATED).json(usuarios);
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }
@@ -31,21 +32,21 @@ const index = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
   /*
- #swagger.summary = 'Adiciona um novo produto na base.'
+ #swagger.summary = 'Adiciona um novo usuário na base.'
  #swagger.parameters['body'] = {
  in: 'body',
- schema: { $ref: '#/definitions/CreateProdutoDto' }
+ schema: { $ref: '#/definitions/CreateUsuarioDto' }
  }
  #swagger.responses[200] = {
- schema: { $ref: '#/definitions/Produto' }
+ schema: { $ref: '#/definitions/Usuario' }
  }
  */
 
-  const produto = req.body as CreateProdutoDto;
+  const usuario = req.body as CreateUsuarioDto;
   try {
-    if (await checkNomeIsAvailable(produto.nome)) {
-      const novoProduto = await createProduto(produto);
-      res.status(StatusCodes.CREATED).json(novoProduto);
+    if (await buscaUsuarioPorEmail(usuario.email)) {
+      const novoUsuario = await createUsuario(usuario);
+      res.status(StatusCodes.CREATED).json(novoUsuario);
     } else {
       res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT);
     }
@@ -57,19 +58,18 @@ const create = async (req: Request, res: Response) => {
 
 const read = async (req: Request, res: Response) => {
   /*
- #swagger.summary = 'Recupera dados de um produto específico.'
- #swagger.parameters['id'] = { description: "ID do produto" }
+ #swagger.summary = 'Recupera dados de um produto usuário específico.'
+ #swagger.parameters['id'] = { description: "ID do usuário" }
  #swagger.responses[200] = {
-   schema: { $ref: '#/definitions/Produto' }
+   schema: { $ref: '#/definitions/Usuario' }
  }
  */
-
   const { id } = req.params;
   try {
-    const produto = await readProduto(id);
-    if (!produto)
+    const usuario = await readUsuario(id);
+    if (!usuario)
       res.status(StatusCodes.NOT_FOUND).json(ReasonPhrases.NOT_FOUND);
-    res.status(StatusCodes.OK).json(produto);
+    res.status(StatusCodes.OK).json(usuario);
   } catch (err) {
     console.log(err);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
@@ -78,22 +78,21 @@ const read = async (req: Request, res: Response) => {
 
 const update = async (req: Request, res: Response) => {
   /*
- #swagger.summary = 'Atualiza informações de um produto específico.'
-  #swagger.parameters['id'] = { description: "ID do produto" }
+ #swagger.summary = 'Atualiza informações de um usuário específico.'
+  #swagger.parameters['id'] = { description: "ID do usuário" }
  #swagger.parameters['body'] = {
  in: 'body',
- schema: { $ref: '#/definitions/CreateProdutoDto' }
+ schema: { $ref: '#/definitions/CreateUsuarioDto' }
  }
  #swagger.responses[200] = {
- schema: { $ref: '#/definitions/Produto' }
+ schema: { $ref: '#/definitions/Usuario' }
  }
  */
-
   const { id } = req.params;
-  const produto = req.body as UpdateProdutoDto;
+  const usuario = req.body as UpdateUsuarioDto;
   try {
-    if (await checkNomeIsAvailable(produto.nome, id)) {
-      const updatedProduto = await updateProduto(id, produto);
+    if (await buscaUsuarioPorId(id)) {
+      const updatedUsuario = await updateUsuario(id, usuario);
       res.status(StatusCodes.NO_CONTENT).json();
     } else {
       res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT);
@@ -106,13 +105,13 @@ const update = async (req: Request, res: Response) => {
 
 const remove = async (req: Request, res: Response) => {
   /*
- #swagger.summary = 'Deleta um produto específico.'
- #swagger.parameters['id'] = { description: "ID do produto" }
+ #swagger.summary = 'Deleta um usuário específico.'
+ #swagger.parameters['id'] = { description: "ID do usuário" }
  #swagger.responses[200] = {}
  */
   const { id } = req.params;
   try {
-    const deletedProduto = await deleteProduto(id);
+    const deletedUsuario = await deleteUsuario(id);
     res.status(StatusCodes.NO_CONTENT).json();
   } catch (err) {
     console.log(err);

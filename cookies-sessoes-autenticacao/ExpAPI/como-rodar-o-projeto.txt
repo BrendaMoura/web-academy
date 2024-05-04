@@ -1,0 +1,5 @@
+1. Em web-academy/cookies-sessoes-autenticacao/ExpAPI rode "docker compose up".
+2. Rode "docker exec -it backend_loja npx prisma migrate dev".
+3. Rode "docker exec -it backend_loja npx prisma db seed".
+
+Obs.: Lembre-se de disponibilizar os arquivos de ambiente.
