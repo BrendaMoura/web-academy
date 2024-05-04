@@ -1,30 +1,12 @@
 import React from "react";
-import ItemCarrinho from "./ItemCarrinho";
+import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
+import { produtoCarrinho } from "@/app/types/carrinho";
 
-interface Item {
-  nome: string;
-  preco: number;
-  quantidade: number;
+interface ListagemCarrinhoProps {
+  itensCarrinho: produtoCarrinho[];
 }
 
-const ListagemCarrinho = () => {
-  const produtos: Item[] = [
-    {
-      nome: "Notebook 1",
-      preco: 1500,
-      quantidade: 3,
-    },
-    {
-      nome: "Notebook 2",
-      preco: 1500,
-      quantidade: 2,
-    },
-    {
-      nome: "Notebook 3",
-      preco: 1500,
-      quantidade: 1,
-    },
-  ];
+const ListagemCarrinho = ({ itensCarrinho }: ListagemCarrinhoProps) => {
   return (
     <div className="card mb-4">
       <div className="row card-body">
@@ -41,8 +23,11 @@ const ListagemCarrinho = () => {
               </tr>
             </thead>
             <tbody>
-              {produtos.map((item, index) => (
-                <ItemCarrinho item={item} key={index} />
+              {itensCarrinho.map((itemCarrinho) => (
+                <ItemCarrinho
+                  key={itemCarrinho.id}
+                  itemCarrinho={itemCarrinho}
+                />
               ))}
             </tbody>
           </table>

@@ -1,23 +1,19 @@
 import React from "react";
 import Image from "next/image";
+import { Produto } from "@/app/types/produto";
 
-type Produto = {
-  nome: string;
-  preco: number;
-};
-
-type Props = {
+interface CardProdutoProps {
   produto: Produto;
-};
+}
 
-const CardProduto = ({ produto }: Props) => {
+const CardProduto = ({ produto }: CardProdutoProps) => {
   return (
     <div className="col">
       <div className="card shadow-sm h-100">
         <Image
-          src="/placeholder.png"
+          src={produto.fotos[0].src}
           className="card-img-top"
-          alt="imagem placeholder"
+          alt={produto.fotos[0].titulo}
           width={300}
           height={320}
         />
