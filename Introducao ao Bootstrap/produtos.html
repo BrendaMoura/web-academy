@@ -3,16 +3,187 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Loja WA</title>
+    <title>Loja PET</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
   </head>
   <body>
     <!-- navbar -->
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Loja PET</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="produtos.html"
+                >Gerenciar produtos</a
+              >
+            </li>
+          </ul>
+          <button class="btn btn-secondary d-flex" type="submit">Sair</button>
+        </div>
+      </div>
+    </nav>
     <!-- navbar -->
 
     <!-- gerenciar produtos -->
+    <div class="container min-w-75 mx-auto mt-5">
+      <h5 class="fw-bold">Gerenciar Produtos:</h5>
+      <div class="d-flex justify-content-end">
+        <button
+          class="btn btn-warning btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#cadastrarProdutos"
+        >
+          Novo Produto
+        </button>
+      </div>
+
+      <table class="table table-striped mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Estoque</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Tapete Higiênico</td>
+            <td>R$69,68</td>
+            <td>135</td>
+            <td>
+              <div class="d-grid gap-2 d-lg-flex">
+                <button class="btn btn-secondary btn-sm">Editar</button>
+                <button class="btn btn-secondary btn-sm">Excluir</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Eliminador de Odor</td>
+            <td>R$52,77</td>
+            <td>93</td>
+            <td>
+              <div class="d-grid gap-2 d-lg-flex">
+                <button class="btn btn-secondary btn-sm">Editar</button>
+                <button class="btn btn-secondary btn-sm">Excluir</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Ração GranPlus Salmão e Arroz para Gatos Castrados</td>
+            <td>R$157,41</td>
+            <td>230</td>
+            <td>
+              <div class="d-grid gap-2 d-lg-flex">
+                <button class="btn btn-secondary btn-sm">Editar</button>
+                <button class="btn btn-secondary btn-sm">Excluir</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Comedor Único Ajustável</td>
+            <td>R$45,53</td>
+            <td class="text-danger">0</td>
+            <td>
+              <div class="d-grid gap-2 d-lg-flex">
+                <button class="btn btn-secondary btn-sm">Editar</button>
+                <button class="btn btn-secondary btn-sm">Excluir</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <!-- gerenciar produtos -->
 
     <!-- modal cadastrar produtos -->
+    <div class="modal fade" id="cadastrarProdutos">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Novo produto</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="produto" class="form-label">Produto</label>
+                <input
+                  type="text"
+                  id="produto"
+                  class="form-control form-control-lg"
+                  aria-describedby="produto"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="preco" class="form-label">Preço</label>
+                <input
+                  type="text"
+                  id="preco"
+                  class="form-control form-control-lg"
+                  aria-describedby="preco"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="estoque" class="form-label">Estoque</label>
+
+                <input
+                  type="number"
+                  id="estoque"
+                  class="form-control form-control-lg"
+                  aria-describedby="estoque"
+                  required
+                />
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-success">Confirmar cadastro</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- modal cadastrar produtos -->
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
   </body>
 </html>
