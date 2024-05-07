@@ -4,9 +4,13 @@ import { produtoCarrinho } from "@/app/types/carrinho";
 
 interface ListagemCarrinhoProps {
   itensCarrinho: produtoCarrinho[];
+  removerItemDoCarrinho: (id: string) => void;
 }
 
-const ListagemCarrinho = ({ itensCarrinho }: ListagemCarrinhoProps) => {
+const ListagemCarrinho = ({
+  itensCarrinho,
+  removerItemDoCarrinho,
+}: ListagemCarrinhoProps) => {
   return (
     <div className="card mb-4">
       <div className="row card-body">
@@ -27,6 +31,7 @@ const ListagemCarrinho = ({ itensCarrinho }: ListagemCarrinhoProps) => {
                 <ItemCarrinho
                   key={itemCarrinho.id}
                   itemCarrinho={itemCarrinho}
+                  removerItemDoCarrinho={removerItemDoCarrinho}
                 />
               ))}
             </tbody>

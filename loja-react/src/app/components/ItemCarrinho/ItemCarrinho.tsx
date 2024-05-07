@@ -3,9 +3,13 @@ import React from "react";
 
 interface ItensCarrinhoProps {
   itemCarrinho: produtoCarrinho;
+  removerItemDoCarrinho: (id: string) => void;
 }
 
-const ItemCarrinho = ({ itemCarrinho }: ItensCarrinhoProps) => {
+const ItemCarrinho = ({
+  itemCarrinho,
+  removerItemDoCarrinho,
+}: ItensCarrinhoProps) => {
   const valorTotalProduto = (
     precoUnitario: number,
     quantidade: number
@@ -24,7 +28,14 @@ const ItemCarrinho = ({ itemCarrinho }: ItensCarrinhoProps) => {
         )}
       </td>
       <td>
-        <button className="btn btn-danger btn-sm">Remover</button>
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => {
+            removerItemDoCarrinho(itemCarrinho.id);
+          }}
+        >
+          Remover
+        </button>
       </td>
     </tr>
   );
