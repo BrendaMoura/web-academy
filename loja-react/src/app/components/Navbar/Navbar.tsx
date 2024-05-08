@@ -1,6 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const rotasUsuariosDeslogados = ["/login", "/cadastro"];
+
+  if (rotasUsuariosDeslogados.includes(pathname)) {
+    return null;
+  }
+
   return (
     <nav className="navbar navbar-expand-md bg-light border-bottom border-body sticky-top">
       <div className="container-fluid">
