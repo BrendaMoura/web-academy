@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Produto } from "@/app/types/produto";
+import { useRouter } from "next/navigation";
 
 interface CardProdutoProps {
   produto: Produto;
@@ -8,6 +9,12 @@ interface CardProdutoProps {
 }
 
 const CardProduto = ({ produto, adicionarAoCarrinho }: CardProdutoProps) => {
+  const router = useRouter();
+
+  const verDetalhesProduto = (nomeProduto: string) => {
+    router.push(`/produto/${nomeProduto}`);
+  };
+
   return (
     <div className="col">
       <div className="card shadow-sm h-100">
@@ -30,6 +37,15 @@ const CardProduto = ({ produto, adicionarAoCarrinho }: CardProdutoProps) => {
             }}
           >
             Adicionar no carrinho
+          </button>
+          <button
+            className="btn btn-light d-block w-100 mt-2"
+            type="button"
+            onClick={() => {
+              verDetalhesProduto(produto.nome);
+            }}
+          >
+            Ver detalhes
           </button>
         </div>
       </div>
