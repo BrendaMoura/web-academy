@@ -6,6 +6,9 @@ import { mockItensCarrinho } from "../mocks/itensCarrinho";
 
 export default function Carrinho() {
   const [itensCarrinho, setItensCarrinho] = useState(mockItensCarrinho);
+  const [quantidadeItensTotal, setQuantidadeItensTotal] = useState(
+    itensCarrinho.reduce((acc, item) => acc + item.quantidade, 0)
+  );
   const [precoTotal, setPrecoTotal] = useState(
     itensCarrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
   );
@@ -13,6 +16,7 @@ export default function Carrinho() {
   const removerItemDoCarrinho = (id: string) => {
     const itemCarrinho = itensCarrinho.find((item) => item.id === id);
 
+    setQuantidadeItensTotal(quantidadeItensTotal - itemCarrinho?.quantidade!);
     setItensCarrinho(itensCarrinho.filter((item) => item.id !== id));
 
     setPrecoTotal(
@@ -28,7 +32,7 @@ export default function Carrinho() {
           removerItemDoCarrinho={removerItemDoCarrinho}
         />
         <ResumoCarrinho
-          quantidadeItensTotal={itensCarrinho.length}
+          quantidadeItensTotal={quantidadeItensTotal}
           precoTotal={precoTotal}
         />
       </div>
