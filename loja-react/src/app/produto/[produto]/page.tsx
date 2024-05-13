@@ -30,13 +30,15 @@ const Produto = () => {
                 <h5 className="card-title mb-4 fw-bold">{produto.nome}</h5>
 
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-3">
-                  <Image
-                    src={produto.fotos[0].src}
-                    className="card-img-top"
-                    alt={produto.fotos[0].titulo}
-                    width={300}
-                    height={320}
-                  />
+                  {produto.fotos.map((foto, index) => (
+                    <Image
+                      key={index}
+                      src={foto.src}
+                      alt={foto.titulo}
+                      width={300}
+                      height={320}
+                    />
+                  ))}
                 </div>
 
                 <p className="card-text fw-medium">
