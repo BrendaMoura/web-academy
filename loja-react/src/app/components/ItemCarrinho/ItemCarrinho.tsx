@@ -1,15 +1,12 @@
-import { produtoCarrinho } from "@/app/types/carrinho";
+import { Action, produtoCarrinho } from "@/app/types/carrinho";
 import React from "react";
 
 interface ItensCarrinhoProps {
   itemCarrinho: produtoCarrinho;
-  removerItemDoCarrinho: (id: string) => void;
+  dispatch: React.Dispatch<Action>;
 }
 
-const ItemCarrinho = ({
-  itemCarrinho,
-  removerItemDoCarrinho,
-}: ItensCarrinhoProps) => {
+const ItemCarrinho = ({ itemCarrinho, dispatch }: ItensCarrinhoProps) => {
   const valorTotalProduto = (
     precoUnitario: number,
     quantidade: number
@@ -19,8 +16,25 @@ const ItemCarrinho = ({
     <tr key={itemCarrinho.id}>
       <td>{itemCarrinho.nome}</td>
       <td>R$ {itemCarrinho.preco.toFixed(2)}</td>
-      <td>{itemCarrinho.quantidade}</td>
-
+      <td>
+        <button
+          className="btn btn-secondary btn-sm me-2"
+          onClick={() =>
+            dispatch({ type: "diminuir_qtd", id: itemCarrinho.id })
+          }
+        >
+          -
+        </button>
+        {itemCarrinho.quantidade}
+        <button
+          className="btn btn-secondary btn-sm ms-2"
+          onClick={() =>
+            dispatch({ type: "aumentar_qtd", id: itemCarrinho.id })
+          }
+        >
+          +
+        </button>
+      </td>
       <td>
         R${" "}
         {valorTotalProduto(itemCarrinho.preco, itemCarrinho.quantidade).toFixed(
@@ -30,9 +44,7 @@ const ItemCarrinho = ({
       <td>
         <button
           className="btn btn-danger btn-sm"
-          onClick={() => {
-            removerItemDoCarrinho(itemCarrinho.id);
-          }}
+          onClick={() => dispatch({ type: "remover", id: itemCarrinho.id })}
         >
           Remover
         </button>

@@ -4,3 +4,7 @@ export interface produtoCarrinho {
   preco: number;
   quantidade: number;
 }
+export interface Action {
+  type: "remover" | "aumentar_qtd" | "diminuir_qtd";
+  id: string;
+}

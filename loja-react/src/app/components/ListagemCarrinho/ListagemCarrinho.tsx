@@ -1,15 +1,15 @@
 import React from "react";
 import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
-import { produtoCarrinho } from "@/app/types/carrinho";
+import { Action, produtoCarrinho } from "@/app/types/carrinho";
 
 interface ListagemCarrinhoProps {
   itensCarrinho: produtoCarrinho[];
-  removerItemDoCarrinho: (id: string) => void;
+  dispatch: React.Dispatch<Action>;
 }
 
 const ListagemCarrinho = ({
   itensCarrinho,
-  removerItemDoCarrinho,
+  dispatch,
 }: ListagemCarrinhoProps) => {
   return (
     <div className="card mb-4">
@@ -31,7 +31,7 @@ const ListagemCarrinho = ({
                 <ItemCarrinho
                   key={itemCarrinho.id}
                   itemCarrinho={itemCarrinho}
-                  removerItemDoCarrinho={removerItemDoCarrinho}
+                  dispatch={dispatch}
                 />
               ))}
             </tbody>
