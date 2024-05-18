@@ -35,17 +35,14 @@ function reducer(state: produtoCarrinho[], action: Action) {
 
 export default function Carrinho() {
   const [itensCarrinho, dispatch] = useReducer(reducer, mockItensCarrinho);
-  const [quantidadeItensTotal, setQuantidadeItensTotal] = useState(0);
-  const [precoTotal, setPrecoTotal] = useState(0);
-
-  useEffect(() => {
-    setQuantidadeItensTotal(
-      itensCarrinho.reduce((acc, item) => acc + item.quantidade, 0)
-    );
-    setPrecoTotal(
-      itensCarrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
-    );
-  }, [itensCarrinho]);
+  const quantidadeItensTotal = itensCarrinho.reduce(
+    (acc, item) => acc + item.quantidade,
+    0
+  );
+  const precoTotal = itensCarrinho.reduce(
+    (acc, item) => acc + item.preco * item.quantidade,
+    0
+  );
 
   return (
     <main>
